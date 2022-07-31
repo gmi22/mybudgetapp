@@ -1,0 +1,20 @@
+{% extends 'budget/base.html' %}
+
+{% block content %}
+
+
+
+
+<form  method = "Post" class = 'card p-3 bg-light'>
+
+    {% csrf_token %}
+    
+    {{editCatform}}
+    
+<input type="submit" value= 'Save' name="editCatform">
+    
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,99 @@
+
+
+
+<!---->
+<!DOCTYPE html>
+<nav class="navbar navbar-dark bg-primary ">
+
+	
+
+		<div class="col-md-12 bg-primary">
+
+		{% if request.user.is_authenticated%}
+		<a href= "/logout">		
+		<button  type="button" class="btn btn-info btn-rounded ">Logout</button>
+		</a>
+		{% else %}
+		<a href= "/login">		
+		<button  type="button" class="btn btn-info btn-rounded ">Login</button>
+		</a>
+		{% endif %}
+
+		<a href= "/register">
+		<button  type="button" class="btn btn-success btn-rounded ">Sign Up !</button>
+		</a>
+
+		<div class="h-10 d-flex align-items-center justify-content-center">
+			
+			  <h1>SimpleBudgetAPP</h1>
+			
+		</div>
+
+		
+
+		</div>
+
+	
+	
+	</nav>
+
+<div class="jumbotron jumbotron-fluid">
+
+
+
+    <div class="container">
+
+      <h1 class="display-4">Welcome To the Budgeting App {{request.user.get_full_name}}</h1>
+      <p class="lead">A simple app for full control of your finances</p>
+    </div>
+  </div>
+<html><head>
+	<title>
+	
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.btn-circle.btn-xl {
+			width: 200px;
+			height: 200px;
+			padding: 13px 18px;
+			border-radius: 60px;
+			font-size: 22px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		
+	<h1>What would you like to do.....</h1>
+	
+	<div class="container"></div>
+
+    
+    <a href="{%url 'add_budget'%}">
+	<button type="button" class="btn btn-success btn-circle btn-xl"><b>Make a Budget</b></button>
+    </a> 
+
+    <a href="{%url 'add_actuals'%}">
+	<button type="button" class="btn btn-secondary btn-circle btn-xl"><b>Add Transaction</b></button>
+    </a>
+
+    <a href="{%url 'monthly'%}">
+	<button type="button" class="btn btn-primary btn-circle btn-xl"><b>See Monthly Dashboard</b></button>
+    </a>
+	<a href="{%url 'yearly'%}">
+	<button type="button" class="btn btn-danger btn-circle btn-xl"><b>See Year to Date Dashboard</b></button>
+	</a>
+	</div>
+	</div>
+	</body>
+</html>		
+
+<!---->
+

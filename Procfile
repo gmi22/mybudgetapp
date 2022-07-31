@@ -1,0 +1,1 @@
+web: gunicorn budget_app.wisgi --log-file -

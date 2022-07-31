@@ -1,0 +1,19 @@
+{% extends 'budget/base.html' %}
+
+{% block content %}
+
+<h3> Edit Actuals</h3>
+
+<form  method = "Post" class = 'card p-3 bg-light'>
+
+    {% csrf_token %}
+
+    {{editActualsform}}
+
+    <input type="submit" value= 'Save' name="editActualsform">
+    
+</form>
+
+
+
+{% endblock %}

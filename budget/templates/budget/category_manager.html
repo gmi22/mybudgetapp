@@ -1,0 +1,37 @@
+{% extends 'budget/base.html' %}
+
+{% block content %}
+
+
+<h2>Manage Your Catagories</h2>
+
+
+
+<div class="card">
+
+<table class="table table-striped">
+    <tr>
+
+
+    <th scope="col">Category</th>
+    <th scope="col">Income or Expense</th>
+    <th scope="col">Edit</th>
+  
+    
+    </tr>
+    <tr>
+        {%for cats in cats%}       
+    <td>{{cats.category_feild}}</td>
+    <td>{{cats.income_or_expense}}</td>
+    <td><a href="{% url 'edit_category' cats.id %}" > Edit</a></td>
+ 
+    </tr>
+    {% endfor %}
+
+</table>
+
+</div>
+
+
+
+{% endblock %}

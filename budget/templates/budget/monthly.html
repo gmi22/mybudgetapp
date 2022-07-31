@@ -1,0 +1,163 @@
+{% extends 'budget/base.html' %}
+
+
+
+{% block content %}
+
+<div class = 'warning'>
+  {{error}}
+</div>
+
+<span class="border">
+<div class="h-10 d-flex align-items-center justify-content-center">
+  <div >
+    <h1>{{month_name}} {{yearForsearch}} Dashboard</h1>
+  </div>
+</div>
+</span>
+
+
+<div class="container">
+  
+<form enctype= multipart/form-data method = "Post" class = 'card p-3 bg-light' id = month_select>
+
+    
+    {% csrf_token %}
+
+    {{d_form}}
+
+
+    <input  class="btn btn-primary"  type="submit" name="get_month">
+
+
+    
+</form>
+
+
+</div>
+
+<div class="d-flex p-2 bd-highlight"></div>
+
+<div class="container">
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+
+<div class="card-group">
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Total Income</h5>
+      <h4 class="card-text">$ {{total_income}}</h4>
+      
+    </div>
+  </div>
+  
+
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Total Expenses</h5>
+      <h4 class="card-text">$ {{total_expense}}</h4>
+      
+    </div>
+  </div>
+  
+  <div class="card">
+   
+    <div class="card-body">
+      <h5 class="card-title">Total Saved/Deficit</h5>
+      <h4 class="card-text">$ {{saved}}</h4>
+     
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="d-flex p-2 bd-highlight"></div>
+
+
+<div class="container">
+
+             
+    <table class="table table-striped">
+      <caption style="caption-side: top" ><b>Income</b></caption>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Actuals</th>
+          <th>Budget</th>
+          <th>Over/Under</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!-- jinja2 Technique -->
+      {% if inc_data %}  
+      {% for i in inc_data %}
+        <tr>
+          <td>{{i.Category}}</td>
+          <td>{{i.Actual}}</td>
+          <td>{{i.Budget}}</td>
+          <td>{{i.Variance}}</td>
+        </tr>
+      {% endfor %}
+      {% endif %}
+      </tbody>
+    </table>
+
+  </div>
+
+
+    <div class="container">
+
+      
+    
+        
+                
+      <table class="table table-striped">
+        <caption style="caption-side: top" ><b>Expense</b></caption>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Actuals</th>
+            <th>Budget</th>
+            <th>Over/Under</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- jinja2 Technique -->
+        {% if exp_data %}  
+        {% for i in exp_data %}
+          <tr>
+            <td>{{i.Category}}</td>
+            <td>{{i.Actual}}</td>
+            <td>{{i.Budget}}</td>
+            <td>{{i.Variance}}</td>
+          </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+      </div>
+
+
+      
+      <div class="card">
+      <div class="container">
+            {{histo_chart|safe}}
+        </div>
+      </div>  
+   
+      <div class="d-flex p-2 bd-highlight"></div>
+
+    
+      <div class="card">
+        <div class="container">
+            {{pie_chart|safe}}
+        </div>
+      </div>
+   
+
+
+  
+
+{% endblock content %}

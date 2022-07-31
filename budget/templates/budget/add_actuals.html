@@ -1,0 +1,102 @@
+{% extends 'budget/base.html' %}
+
+
+
+{% block content %}
+
+<div class="container">
+<form method = "Post" class = 'card p-3 bg-light'>
+    <h4>Enter Transactions</h4>
+    <div class="form-group">  
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <input style="width:100%" class="btn btn-primary" type="submit" name = "actuals_form">
+    </div>
+</form>
+
+<div class="d-flex p-2"></div>
+
+
+<form enctype= multipart/form-data method = "Post" class = 'card p-3 bg-light'>
+    <h4>Find Transaction</h4>
+
+    {% csrf_token %}
+
+    {{d_form}}
+
+    <input class="btn btn-primary" type="submit"  name="get_month">
+    
+</form>
+
+<div class="d-flex p-2 bd-highlight"></div>
+
+
+<h3>{{month_name}} {{yearForsearch}} Transactions Detail</h3>
+
+
+<table class="table table-striped">
+    <tr class="d-flex">
+    <caption style="caption-side: top" ><strong>Income</strong></caption>
+
+    <th class="col-1">Category</th>
+    <th class="col-1">Date</th>
+    <th class="col-1">Actual Amount</th>
+    <th class="col-1">Vendor</th>
+    <th class="col-1" >Details</th>
+    <th class="col-1"></th>
+    <th class="col-1"></th>
+    </tr>
+    <tr>
+{% for income_act in income_act %}        
+    <td class="col-1">{{income_act.category}}</td>
+    <td class="col-1">{{income_act.date|date:"M d Y"}}</td>
+    <td class="col-1">{{income_act.transactions_amount}}</td>
+    <td class="col-1">{{income_act.vendor}}</td>
+    <td class="col-1">{{income_act.details}}</td>
+    <td class="col-1"><a href="{% url 'edit_actuals' income_act.id %}"> Edit</a></td>
+    <td class="col-1"><a href="{% url 'delete_actuals' income_act.id %}"> Delete</a></td>
+    </tr>
+{% endfor %}
+
+</table>
+
+
+
+<table class="table table-striped">
+    <tr class="d-flex">
+    <caption style="caption-side: top" ><strong>Expenses</strong></caption>
+    <th class="col-1">Category</th>
+    <th class="col-1">Date</th>
+    <th class="col-1">Actual Amount</th>
+    <th class="col-1">Vendor</th>
+    <th class="col-1">Details</th>
+    <th class="col-1"></th>
+    <th class="col-1"></th>
+    </tr>
+    <tr>
+
+{% for expense_act in expense_act %}        
+    <td class="col-1">{{expense_act.category}}</td>
+    <td class="col-1">{{expense_act.date|date:"M d Y"}}</td>
+    <td class="col-1">{{expense_act.transactions_amount}}</td>
+    <td class="col-1">{{expense_act.vendor}}</td>
+    <td class="col-1">{{expense_act.details}}</td>
+    <td class="col-1"><a href="{% url 'edit_actuals' expense_act.id %}"> Edit</a></td>
+    <td class="col-1"><a href="{% url 'delete_actuals' expense_act.id %}"> Delete</a></td>
+    </tr>
+    {% endfor %}
+    
+</table>
+
+</div>
+
+<script>
+      $(function () {
+        $("#id_date").datepicker();
+      });
+    </script>
+
+{% endblock content %}

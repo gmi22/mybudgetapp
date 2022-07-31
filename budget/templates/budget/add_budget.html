@@ -1,0 +1,144 @@
+
+
+
+
+{% extends 'budget/base.html' %}
+
+
+{% block content %}
+
+<div class = 'warning'>
+  {{error}}
+</div>
+
+
+
+<div class="container">
+<form enctype= multipart/form-data method = "Post" class = 'card p-3 bg-light'>
+    <h4>Enter your budget</h4>
+
+    <a style="float:left" href="{%url 'add_category'%}"><button type="button" class="btn btn-primary btn-sm"> + Add Category </button></a>
+    <div class="form-group"> 
+
+{% csrf_token %}
+
+{{b_form}}
+
+<input class="btn btn-primary" style="width:100%" type="submit" name ="budgetForminfo">
+
+</form>
+</div>
+
+<div class="d-flex p-2"></div>
+
+
+<form enctype= multipart/form-data method = "Post" class = 'card p-3 bg-light'>
+
+<h4>Search for a budget</h4>
+
+{% csrf_token %}
+
+{{d_form}}
+
+<input class="btn btn-primary" type="submit" name="get_month">
+
+</form>
+
+<div class="d-flex p-2 bd-highlight"></div>
+
+<h3>{{month_name}} {{yearForsearch}} Budget </h3>
+
+<div class="container">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    
+    <div class="card-group">
+      <div class="card">
+        
+        <div class="card-body">
+          <h5 class="card-title">Budgeted Income</h5>
+          <h4 class="card-text">$ {{tot_inc}}</h4>
+          
+        </div>
+      </div>
+      
+    
+      <div class="card">
+        
+        <div class="card-body">
+          <h5 class="card-title">Budgeted Expenses</h5>
+          <h4 class="card-text">$ {{tot_exp}}</h4>
+          
+        </div>
+      </div>
+      
+      <div class="card">
+       
+        <div class="card-body">
+          <h5 class="card-title">Net Income</h5>
+          <h4 class="card-text">$ {{tot_saved}}</h4>
+         
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+    <table class="table table-striped">
+        <tr>
+    
+        <caption style="caption-side: top" ><b>Income</b></caption>
+    
+        <th class="col-1">Category</th>
+        <th class="col-1">Date</th>
+        <th class="col-1">Budget</th>
+        <th class="col-1">Comments</th>
+        <th class="col-1"></th>
+        <th class="col-1"></th>
+        </tr>
+        <tr>
+    {% for income in income %}       
+        <td class="col-1" >{{income.category}}</td>
+        <td class="col-1">{{income.date|date:"M d Y"}}</td>
+        <td class="col-1">{{income.budget_amt}}</td>
+        <td class="col-1">{{income.comments}}</td>
+        <td class="col-1" ><a href="{% url 'edit_budget' income.id %}" > Edit</a></td>
+        <td class="col-1"><a href="{% url 'delete_budget' income.id %}"> Delete</a></td>
+        </tr>
+        {% endfor %}
+    
+    </table>
+
+
+    <table class="table table-striped">
+
+        <tr>
+    
+        <caption style="caption-side: top" ><b>Expense</b></caption>
+        <th class="col-1">Category</th>
+        <th class="col-1">Date</th>
+        <th class="col-1">Budget</th>
+        <th class="col-1">Comments</th> 
+        <th class="col-1"></th>
+        <th class="col-1"></th>
+        </tr>
+        <tr>
+     {% for expense in expense %}       
+        <td class="col-1">{{expense.category}}</td>
+        <td class="col-1">{{expense.date|date:"M d Y"}}</td>
+        <td class="col-1">{{expense.budget_amt}}</td>
+        <td class="col-1" >{{expense.comments}}</td>
+        <td class="col-1" ><a href="{% url 'edit_budget' expense.id %}"> Edit </a></td>
+        <td class="col-1"><a href="{% url 'delete_budget' expense.id %}"> Delete </a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+      $(function () {
+        $("#id_date").datepicker();
+      });
+    </script>
+    
+
+    {% endblock content %}
