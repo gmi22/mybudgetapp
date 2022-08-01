@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mfoa7-ssq38_^oucr60&m!we#uq2jjpj$b84v^3(v^o=a_fi&u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mysimplebudgetapp.herokuapp.com']
 
@@ -165,5 +165,5 @@ LOGOUT_REDIRECT_URL = "/"
 #EMAIL_HOST_USER = 
 #EMAIL_HOST_PASSWORD = 
 
-if os.getcwd() == '/app':
-    DEBUG = FALSE
+#if os.getcwd() == '/app':
+    #DEBUG = FALSE
