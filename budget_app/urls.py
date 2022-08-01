@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from budget_app.budget_app.settings import STATIC_ROOT, STATIC_URL
+#from budget_app.budget_app.settings import STATIC_ROOT, STATIC_URL
 from register import views as v
 from django.contrib.auth import views as auth_views
 from django.conf import settings
