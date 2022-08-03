@@ -13,7 +13,7 @@ def register(response):
         if form.is_valid():
             form.save()
         
-        return redirect("login")
+            return redirect("login")
 
     else:
     

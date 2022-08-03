@@ -160,7 +160,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 
-SESSION_COOKIE_SECURE = False
+
 
 #SMTP Configeration
 
