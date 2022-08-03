@@ -34,8 +34,9 @@ ALLOWED_HOSTS = ['mysimplebudgetapp.herokuapp.com','127.0.0.1']
 
 INSTALLED_APPS = [
 
-    'register',
+    
     'budget',
+    'register',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    
     
     
 ]
@@ -156,6 +158,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+
+SESSION_COOKIE_SECURE = True
 
 #SMTP Configeration
 
