@@ -1,6 +1,6 @@
 ### Description
 
-mybudgetapp is a full-stack web application for individuals who want a hands on approach to their personal financial budget and expense tracking.
+mysimplebudgetapp is a full-stack web application for individuals who want a hands on approach to their personal financial budget and expense tracking.
 
 ### Links
 
